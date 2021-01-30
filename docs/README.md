@@ -4,7 +4,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/frodal/path-finding.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/frodal/path-finding.svg)
 
-Find the shortest path from A to B with this path finder in your browser. Try it out [here](http://folk.ntnu.no/frodal/Cite/Projects/path-finding/src/html/index.html).
+Find the shortest path from A to B with this path finder in your browser. Try it out [here](http://folk.ntnu.no/frodal/Cite/Projects/Path-finding.html).
 
 ![path-finding gif](path-finding.gif "path-finding")
 
