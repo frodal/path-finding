@@ -1,0 +1,24 @@
+body {
+  background-color: #323232;
+  color: white;
+}
+
+nav {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.gridContainer {
+  margin: 2em auto;
+  outline: 2px solid black;
+  display: -ms-grid;
+  display: grid;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.tile {
+  outline: 1px solid black;
+}
+/*# sourceMappingURL=style.css.map */

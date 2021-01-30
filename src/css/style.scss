@@ -1,0 +1,20 @@
+body {
+    background-color:rgb(50, 50, 50);
+    color: white;
+}
+
+nav {
+    text-align: center;
+    margin-top: 2em;
+}
+
+.gridContainer {
+    margin: 2em auto;
+	outline: 2px solid black;
+    display: grid;
+    width: fit-content;
+}
+
+.tile {
+	outline:1px solid black;
+}
