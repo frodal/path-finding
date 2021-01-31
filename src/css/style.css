@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body {
   background-color: #323232;
   color: white;
+  font-family: 'Montserrat';
 }
 
 nav {
@@ -20,5 +22,41 @@ nav {
 
 .tile {
   outline: 1px solid black;
+}
+
+@media screen and (min-width: 500px) {
+  .buttons {
+    display: inline;
+  }
+}
+
+button {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 0.5em 1em;
+  margin: 0.5em 1em;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0.5em;
+  font-family: 'Montserrat';
+  outline: none;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+}
+
+select {
+  font-family: 'Montserrat';
+  background-color: white;
+  border: none;
+  padding: 0.4em 0.5em;
+  margin: 0.5em 1em;
+  cursor: pointer;
+  border-radius: 0.5em;
+  outline: none;
 }
 /*# sourceMappingURL=style.css.map */
