@@ -13,7 +13,6 @@ class Tile {
 
         this.cameFromTile = null;
         this.pathCostToTile = Infinity;
-        this.estimatedTotalPathCost = Infinity;
     }
 }
 
