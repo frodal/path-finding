@@ -17,6 +17,15 @@ export default class PathFinder {
         this.closedSetList = new Array();
     }
 
+    breakTies(current, neighbour) {
+        // Ads a small penalty to the priority of a tile in the min heap, to promote nicer looking paths
+        // This will distinguishes paths with the same path length
+        if (((current.column + current.row) % 2 == 0 && current.column != neighbour.column) ||
+            ((current.column + current.row) % 2 == 1 && current.row != neighbour.row))
+            return 0.001;
+        return 0;
+    }
+
     getClosest(set, goal, distance) {
         let next = null;
         let nextDistance = Infinity;

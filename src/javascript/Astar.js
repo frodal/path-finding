@@ -1,6 +1,7 @@
 // A* path finding algorithm, see: https://en.wikipedia.org/wiki/A*_search_algorithm
 
 import PathFinder from './PathFinder.js';
+import MinHeap from './MinHeap.js';
 
 
 export default class Astar extends PathFinder {
@@ -9,8 +10,7 @@ export default class Astar extends PathFinder {
     }
 
     solve(estDistance) {
-        // TODO: optimize: use a priority queue?
-        let openSet = new Set();
+        let openSet = new MinHeap();
         let closedSet = new Set();
         this.openSetList.length = 0;
         this.closedSetList.length = 0;
@@ -18,12 +18,12 @@ export default class Astar extends PathFinder {
         let startTile = this.grid.startTile;
         let endTile = this.grid.endTile;
 
-        openSet.add(startTile);
         startTile.pathCostToTile = 0;
-        startTile.estimatedTotalPathCost = estDistance(startTile, endTile);
+        let priority = estDistance(startTile, endTile);
+        openSet.add(startTile, priority);
 
         while (openSet.size > 0) {
-            let current = this.getNextSet(openSet);
+            let current = openSet.pop();
             if (current === endTile) {
                 this.goal = current;
                 if (this.shouldVisualize) {
@@ -41,19 +41,18 @@ export default class Astar extends PathFinder {
                 if (tentativePathCostToTile < neighbour.pathCostToTile) {
                     neighbour.cameFromTile = current;
                     neighbour.pathCostToTile = tentativePathCostToTile;
-                    neighbour.estimatedTotalPathCost = tentativePathCostToTile + estDistance(neighbour, endTile);
-                    if (!openSet.has(neighbour)) {
-                        openSet.add(neighbour);
-                        newOpenSet.add(neighbour);
-                        closedSet.delete(neighbour);
-                    }
+                    priority = tentativePathCostToTile + estDistance(neighbour, endTile);
+                    priority += this.breakTies(current, neighbour);
+                    openSet.add(neighbour, priority);
+                    newOpenSet.add(neighbour);
+                    closedSet.delete(neighbour);
                 }
             }
             closedSet.add(current);
-            openSet.delete(current);
-            this.openSetList.push(new Set(newOpenSet));
+            this.openSetList.push(newOpenSet);
             this.closedSetList.push(current);
         }
+
         this.goal = this.getClosest(closedSet, endTile, estDistance);
         if (!this.goal.isStart)
             if (this.shouldVisualize) {
@@ -62,18 +61,6 @@ export default class Astar extends PathFinder {
                 this.tracePath()
             }
         return false;
-    }
-
-    getNextSet(openSet) {
-        let next = null;
-        let cost = Infinity;
-        for (let item of openSet.values()) {
-            if (item.estimatedTotalPathCost < cost) {
-                next = item;
-                cost = item.estimatedTotalPathCost;
-            }
-        }
-        return next;
     }
 
 }
