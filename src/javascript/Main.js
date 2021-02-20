@@ -71,9 +71,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function refresh(state, grid) {
+    let answer = prompt(`How many tiles per side? (min = ${minTileNum}, max = ${maxTileNum})`);
+    if (answer == null)
+        return
+    answer = parseInt(answer);
+    const N = isNaN(answer) || answer < minTileNum || answer > maxTileNum ? grid.N : answer;
     state.reset();
-    let z = parseInt(prompt(`How many tiles per side? (min = ${minTileNum}, max = ${maxTileNum})`));
-    const N = isNaN(z) || z < minTileNum || z > maxTileNum ? grid.N : z;
     grid.clearGrid();
     grid.createGrid(N, gridWidth, gridHeight);
 };
