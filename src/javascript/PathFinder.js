@@ -26,6 +26,7 @@ export default class PathFinder {
         return 0;
     }
 
+    // get the closest tile in set to goal based on the distance function
     getClosest(set, goal, distance) {
         let next = null;
         let nextDistance = Infinity;
@@ -39,6 +40,7 @@ export default class PathFinder {
         return next;
     }
 
+    // visualizes the path finding algorithm based on the tiles in the open set
     async visualize(i = 0) {
         let length = this.closedSetList.length; // closedSetList and openSetList have the same length
         let stride = Math.ceil(length * this.visualizationDelay / this.visualizationTime);
@@ -69,6 +71,7 @@ export default class PathFinder {
         }
     }
 
+    // displays the path calculated
     tracePath() {
         let previous = this.goal.cameFromTile;
         if (!this.goal.isEnd) {

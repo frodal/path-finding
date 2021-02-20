@@ -9,6 +9,7 @@ export default class Dijkstra extends PathFinder {
         super(grid, pathColor, closestColor, visualizeColor, shouldVisualize, visualizationDelay, visualizationTime);
     }
 
+    // find a path from start to goal/end using the Dijkstra's path finding algorithm
     solve(estDistance) {
         let openSet = new MinHeap();
         let closedSet = new Set();
