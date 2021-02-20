@@ -33,6 +33,7 @@ export default class Grid {
         this.createGrid(N, gridWidth, gridHeight);
     }
 
+    // creates the grid
     createGrid(N, gridWidth, gridHeight) {
         this.width = gridWidth;
         this.height = gridHeight;
@@ -58,6 +59,7 @@ export default class Grid {
         };
     }
 
+    // clears the grid and deletes its tiles
     clearGrid() {
         for (let row = 0; row < this.N; row++) {
             for (let column = 0; column < this.N; column++) {
@@ -74,27 +76,28 @@ export default class Grid {
         this.endTile = null;
     };
 
+    // get the neighbours of a tile
     getNeighbourTiles(tile) {
+        if (tile.isWall)
+            return [];
         let delta = [1, -1];
         let neighbours = [];
-        if (!tile.isWall) {
-            for (let i = 0; i < delta.length; i++) {
-                let x = tile.row + delta[i];
-                let y = tile.column;
-                if (x >= 0 && x < this.N) {
-                    let neighbourTile = this.grid[x][y];
-                    if (!neighbourTile.isWall)
-                        neighbours.push(neighbourTile);
-                }
+        for (let i = 0; i < delta.length; i++) {
+            let x = tile.row + delta[i];
+            let y = tile.column;
+            if (x >= 0 && x < this.N) {
+                let neighbourTile = this.grid[x][y];
+                if (!neighbourTile.isWall)
+                    neighbours.push(neighbourTile);
             }
-            for (let i = 0; i < delta.length; i++) {
-                let x = tile.row;
-                let y = tile.column + delta[i];
-                if (y >= 0 && y < this.N) {
-                    let neighbourTile = this.grid[x][y];
-                    if (!neighbourTile.isWall)
-                        neighbours.push(neighbourTile);
-                }
+        }
+        for (let i = 0; i < delta.length; i++) {
+            let x = tile.row;
+            let y = tile.column + delta[i];
+            if (y >= 0 && y < this.N) {
+                let neighbourTile = this.grid[x][y];
+                if (!neighbourTile.isWall)
+                    neighbours.push(neighbourTile);
             }
         }
         return neighbours;
