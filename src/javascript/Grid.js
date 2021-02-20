@@ -25,7 +25,6 @@ export default class Grid {
         this.height = gridHeight;
         this.N = N;
 
-        this.map = new Map();
         this.grid = null;
 
         this.startTile = null;
@@ -39,7 +38,6 @@ export default class Grid {
         this.height = gridHeight;
         this.N = N;
 
-        this.map.clear();
         this.grid = new Array(N); // NxN grid
 
         this.container.style.gridTemplateColumns = `repeat(${N}, 1fr)`;
@@ -56,7 +54,6 @@ export default class Grid {
                 element.style.height = `${height}px`;
                 this.container.appendChild(element);
                 this.grid[row][column] = new Tile(element, row, column);
-                this.map.set(element, this.grid[row][column]);
             };
         };
     }
@@ -68,7 +65,6 @@ export default class Grid {
             }
         }
         this.grid = null;
-        this.map.clear();
 
         this.width = 0;
         this.height = 0;
@@ -77,10 +73,6 @@ export default class Grid {
         this.startTile = null;
         this.endTile = null;
     };
-
-    getTile(element) {
-        return this.map.get(element);
-    }
 
     getNeighbourTiles(tile) {
         let delta = [1, -1];
