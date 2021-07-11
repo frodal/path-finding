@@ -5,9 +5,6 @@ import MinHeap from './MinHeap.js';
 
 
 export default class Dijkstra extends PathFinder {
-    constructor(grid, pathColor, closestColor, visualizeColor, shouldVisualize, visualizationDelay, visualizationTime) {
-        super(grid, pathColor, closestColor, visualizeColor, shouldVisualize, visualizationDelay, visualizationTime);
-    }
 
     // find a path from start to goal/end using the Dijkstra's path finding algorithm
     solve(estDistance) {

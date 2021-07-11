@@ -26,9 +26,15 @@ const visualizationTime = 5000;
 
 // Entry point
 document.addEventListener('DOMContentLoaded', function () {
+    const container = document.getElementById("gridContainer");
+    if (container)
+        Init(container);
+});
+
+function Init(container) {
     // Setup state and create grid
     let state = new State();
-    let grid = new Grid(startGridSize, gridWidth, gridHeight);
+    let grid = new Grid(container, startGridSize, gridWidth, gridHeight);
     // add mouse events for adding start point, goal, and handeling wall creation and deletion
     addMouseEvents(state, grid);
 
@@ -72,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         console.log(`The path was calculated in ${(t1 - t0).toPrecision(4)} ms`);
     };
-});
+}
 
 // create a new grid based on user input
 function refresh(state, grid) {

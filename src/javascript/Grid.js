@@ -18,8 +18,8 @@ class Tile {
 
 
 export default class Grid {
-    constructor(N, gridWidth, gridHeight) {
-        this.container = document.getElementById("gridContainer");
+    constructor(container, N, gridWidth, gridHeight) {
+        this.container = container;
 
         this.width = gridWidth;
         this.height = gridHeight;

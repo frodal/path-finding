@@ -82,7 +82,7 @@ export default class MinHeap {
 
         // if the value of smallest has changed, then some swapping needs to be done
         // and this method needs to be called again with the swapped element
-        if (smallest != index) {
+        if (smallest !== index) {
             this.swap(smallest, index);
             this.heapify(smallest);
         }

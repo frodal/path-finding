@@ -13,15 +13,15 @@ export default class PathFinder {
         this.closestColor = closestColor;
         this.visualizeColor = visualizeColor;
 
-        this.openSetList = new Array();
-        this.closedSetList = new Array();
+        this.openSetList = [];
+        this.closedSetList = [];
     }
 
     breakTies(current, neighbour) {
         // Ads a small penalty to the priority of a tile in the min heap, to promote nicer looking paths
         // This will distinguishes paths with the same path length
-        if (((current.column + current.row) % 2 == 0 && current.column != neighbour.column) ||
-            ((current.column + current.row) % 2 == 1 && current.row != neighbour.row))
+        if (((current.column + current.row) % 2 === 0 && current.column !== neighbour.column) ||
+            ((current.column + current.row) % 2 === 1 && current.row !== neighbour.row))
             return 0.001;
         return 0;
     }
